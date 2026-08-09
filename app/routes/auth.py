@@ -64,3 +64,17 @@ def refresh():
             "refresh_token": create_refresh_token(identity=identity),  # rotation
         }
     )
+
+
+from flask_jwt_extended import jwt_required, get_jwt
+from app.utils.blocklist import BLACKLIST
+
+
+# ---------------- LOGOUT ----------------
+@auth_bp.route("/logout", methods=["POST"])
+@jwt_required()
+def logout():
+    jti = get_jwt()["jti"]
+    BLACKLIST.add(jti)
+
+    return jsonify({"msg": "Successfully logged out"}), 200
