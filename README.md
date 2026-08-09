@@ -6,6 +6,7 @@
 - Login with JWT
 - Access & Refresh Tokens
 - Token Expiry Handling
+- Logout + Blacklist
 
 ## Endpoints
 
@@ -13,3 +14,4 @@
 - POST /login
 - POST /refresh
 - GET /dashboard
+- GET /logout
